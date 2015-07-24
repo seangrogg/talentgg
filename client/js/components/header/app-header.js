@@ -60,7 +60,8 @@ var Header = React.createClass({
               <li className="dropdown">
                 <Link to='/' className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i className="fa fa-users" /> My Teams <span className="caret"></span></Link>
                 <ul className="dropdown-menu">
-                  {this.state.teams.length === 0 ? <li><Link to="/teamregistration"> Create a Team </Link></li> : this.state.teams.map(function(team){return <li key={team.id}><Link to={"/team/"+team.teamName}>{team.teamName}</Link></li>})}
+                  { this.state.teams.map(function(team){ return <li key={team.id}><Link to={"/team/" + team.teamName} > {team.teamName} </Link></li> })}
+                  { this.state.teams.length < 3 ? (<li><Link to="/teamregistration"> Create a Team </Link></li>) : null }
                 </ul>
               </li>
             </ul>

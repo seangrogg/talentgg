@@ -47,6 +47,8 @@ var TeamRegistration = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     var teamBio = this.state;
+    
+    
     $.post("/team/register", teamBio);
     this.transitionTo('profile', {username: 'username'});
   },  

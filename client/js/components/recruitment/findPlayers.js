@@ -8,18 +8,23 @@ var Checkbox = ReactBtn.Checkbox;
 
 var belle = require('belle');
 Button = belle.Button;
+Select = belle.Select;
+Option = belle.Option;
+Separator = belle.Separator;
 
 var whiteBox = {backgroundColor: 'white', padding: '25', margin:'25', border: 'solid black 2px', height: '250', width: '450', display: 'inline-block'};
 var headshot = {backgroundColor: 'white', padding: '10', border: 'solid red 2px', height: '200', width: '200', float: 'left', textAlign: 'center'};
 var stats = {backgroundColor: 'white', padding: '25', border: 'solid blue 2px', height: '200', width: '200', display: 'block', float: 'right', textAlign: 'center'};
 
-
 var FindPlayers = React.createClass({
   getInitialState: function() {
     return {
       users: [],
+      teamIDs: [],
+      teams: [],
       filteredUsers: [],
-      me: {},      
+      me: {},   
+      displayName: "",   
       times: {
         "weekdays": false,
         "weeknights": false,
@@ -58,14 +63,20 @@ var FindPlayers = React.createClass({
         return axios.get('/profile');
     }
 
-    axios.all([getThem(), getMe()])
-        .then(axios.spread(function(them, me) { 
+    function getMyTeams() {
+        return axios.get('/profile/teams');
+    }
+
+    axios.all([getThem(), getMe(), getMyTeams()])
+        .then(axios.spread(function(them, me, myTeams) {           
             context.setState({
               users: them.data,
               filteredUsers: them.data,
               me: me.data.ratings,
-              id: me.data.id             
-            });
+              id: me.data.id,
+              teams: myTeams.data,
+              displayName: me.data.displayName
+            })        
         }));
   },
 
@@ -119,6 +130,21 @@ var FindPlayers = React.createClass({
     });
   },
   render: function() {
+    var context = this;
+    var teamsCaptained = (function() {
+      var teamNodes = [];
+
+      for (var i = 0; i < context.state.teams.length; i++) {
+        if (context.state.teams[i].teamCaptain === context.state.id) {
+          var name = context.state.teams[i].profile.teamName.toString();
+          teamNodes.push(
+            <Option value={name} key={i}>{name}</Option>
+          )
+        }
+      }
+      return teamNodes
+    })()
+    console.log(this.state.me);
 
     return (     
       <div className="findPlayers">
@@ -126,6 +152,12 @@ var FindPlayers = React.createClass({
         <h2> Filters </h2>
        
           <form onSubmit={this.handleSubmit}>
+
+            <Select>              
+              <Option value="solo">{this.state.displayName}</Option>
+              <Separator>Teams You Captain</Separator>
+              {teamsCaptained}
+            </Select>
           
             <Checkbox
             label='Times: '
