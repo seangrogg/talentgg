@@ -23,7 +23,8 @@ var FindPlayers = React.createClass({
       teamIDs: [],
       teams: [],
       filteredUsers: [],
-      me: {},      
+      me: {},   
+      displayName: "",   
       times: {
         "weekdays": false,
         "weeknights": false,
@@ -67,14 +68,14 @@ var FindPlayers = React.createClass({
     }
 
     axios.all([getThem(), getMe(), getMyTeams()])
-        .then(axios.spread(function(them, me, myTeams) { 
-          console.log(myTeams);
+        .then(axios.spread(function(them, me, myTeams) {           
             context.setState({
               users: them.data,
               filteredUsers: them.data,
               me: me.data.ratings,
               id: me.data.id,
-              teams: myTeams.data
+              teams: myTeams.data,
+              displayName: me.data.displayName
             })        
         }));
   },
@@ -135,15 +136,15 @@ var FindPlayers = React.createClass({
 
       for (var i = 0; i < context.state.teams.length; i++) {
         if (context.state.teams[i].teamCaptain === context.state.id) {
-          console.log(context.state.teams[i].profile.teamName);
+          var name = context.state.teams[i].profile.teamName.toString();
           teamNodes.push(
-            <Option value={context.state.teams[i].profile.teamName}>{context.state.teams[i].profile.teamName}</Option>
+            <Option value={name} key={i}>{name}</Option>
           )
         }
       }
       return teamNodes
     })()
-    console.log(teamsCaptained.length);
+    console.log(this.state.me);
 
     return (     
       <div className="findPlayers">
@@ -152,8 +153,8 @@ var FindPlayers = React.createClass({
        
           <form onSubmit={this.handleSubmit}>
 
-            <Select>
-              <Option value="solo">Solo</Option>
+            <Select>              
+              <Option value="solo">{this.state.displayName}</Option>
               <Separator>Teams You Captain</Separator>
               {teamsCaptained}
             </Select>
