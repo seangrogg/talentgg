@@ -32,11 +32,7 @@ module.exports = function(app) {
   });
 
   app.get('/profile/teams', function(req, res){ // Personal account data
-    User.getOwnProfile(req, res);
-  });
-
-  app.get('/profile/games', function(req, res){ // Personal account data
-    User.getOwnProfile(req, res);
+    User.getTeamsOwned(req, res);
   });
 
   app.post('/profile', function(req, res){ // Update bio data

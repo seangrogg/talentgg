@@ -25,8 +25,8 @@ module.exports = {
       })
       .then(function(){
         res.redirect('/#/user-profile');
-      })
-    })
+      });
+    });
   },
 
   getProfile: function( req, res, next ){

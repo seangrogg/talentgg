@@ -62,14 +62,19 @@ var FindPlayers = React.createClass({
         return axios.get('/profile');
     }
 
-    axios.all([getThem(), getMe()])
-        .then(axios.spread(function(them, me) { 
+    function getMyTeams() {
+        return axios.get('/profile/teams');
+    }
+
+    axios.all([getThem(), getMe(), getMyTeams()])
+        .then(axios.spread(function(them, me, myTeams) { 
+          console.log(myTeams);
             context.setState({
               users: them.data,
               filteredUsers: them.data,
               me: me.data.ratings,
               id: me.data.id,
-              // teamIDs: me.data.teams           
+              teams: myTeams.data
             })        
         }));
   },
@@ -130,9 +135,9 @@ var FindPlayers = React.createClass({
 
       for (var i = 0; i < context.state.teams.length; i++) {
         if (context.state.teams[i].teamCaptain === context.state.id) {
-          console.log(context.state.teams[i].teamName);
+          console.log(context.state.teams[i].profile.teamName);
           teamNodes.push(
-            <Option value={context.state.teams[i].teamName}>{context.state.teams[i].teamName}</Option>
+            <Option value={context.state.teams[i].profile.teamName}>{context.state.teams[i].profile.teamName}</Option>
           )
         }
       }

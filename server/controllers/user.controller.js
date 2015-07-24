@@ -1,4 +1,5 @@
 var User = require( '../models/user.model' );
+var Team = require('../models/team.model');
 var passport = require( 'passport' );
 var bcrypt = require('bcryptjs');
 var request = require('request');
@@ -54,6 +55,20 @@ module.exports = {
     });
   },
 
+  getTeamsOwned: function(req, res){ // sends profiles of teams they captain    
+    var myTeams = [];
+    User.findById(req.session.passport.user)
+    .then(function(data){      
+      var teamsArray = data.teams;
+      Team.findAll({
+        where: {
+          teamCaptain: req.session.passport.user
+        }
+      }).then(function(data){
+        res.json(data);
+      });
+    });
+  },
   updateBio: function(req, res){ // Updates bio data
     User.findById(req.session.passport.user)
     .then(function(data){

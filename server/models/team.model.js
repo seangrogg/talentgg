@@ -46,7 +46,7 @@ var Team = db.define( 'team', {
       }     
     }
   },
-  teamCaptian: {
+  teamCaptain: {
     type: Sequelize.INTEGER
   },
   members: {
