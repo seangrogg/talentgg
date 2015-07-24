@@ -9,16 +9,16 @@ var Team = db.define( 'team', {
     autoIncrement: true,
     primaryKey: true
   },
-  teamName: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false
-  },
   //Team-specific schema
   profile: {
     //This is for storing team-level data, similar to bio
     type: Sequelize.JSON,
     defaultValue: {
+      teamName: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+      },
       times: {
         "weekdays": false,
         "weeknights": false,
@@ -45,6 +45,9 @@ var Team = db.define( 'team', {
         "tank": false
       }     
     }
+  },
+  teamCaptian: {
+    type: Sequelize.INTEGER
   },
   members: {
     //This is for storing the members that are part of the team

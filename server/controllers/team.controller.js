@@ -11,15 +11,14 @@ module.exports = {
       user = userData;
     })
     .then(function(){
-      Team.create({
-        teamName: req.body.teamName,
-        teamBio: {times: req.body.times, about: req.body.about},
+      Team.create({        
+        profile: req.body,
         teamCaptain: user.id,  // redundant, but this gets checked a lot and saves having to iterate over keys every time
         members: {id: user.id, name: user.displayName, isAdmin: true}
       })
       .then(function(teamData){
         team = teamData;
-        user.teams.push({id: team.id, teamName: team.teamName});
+        user.teams.push({id: team.id, teamName: team.profile.teamName});
       })
       .then(function(){
         User.update({teams: user.teams}, {where: {id: req.session.passport.user}});

@@ -24,10 +24,9 @@ var TeamProfile = React.createClass({
           context.setState({
             game: response.data.game,
             members: response.data.members,
-            // teamBio: response.data.teamBio,
-            about: response.data.teamBio.about,
-            times: response.data.teamBio.times,
-            teamName: response.data.teamName,
+            about: response.data.profile.about,
+            times: response.data.profile.times,
+            teamName: response.data.profile.teamName,
           });
       });
   },

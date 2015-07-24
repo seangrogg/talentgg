@@ -69,11 +69,8 @@ var FindPlayers = React.createClass({
               filteredUsers: them.data,
               me: me.data.ratings,
               id: me.data.id,
-              teamIDs: me.data.teams           
-            })
-        .then(axios.get('/'))
-
-          ;
+              // teamIDs: me.data.teams           
+            })        
         }));
   },
 
