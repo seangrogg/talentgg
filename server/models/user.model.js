@@ -33,20 +33,20 @@ var User = db.define( 'user', {
     type: Sequelize.JSON,
     defaultValue: {
      times: {
-      "weekdays": false,
-      "weeknights": false,
-      "weekends": false
+        "weekdays": false,
+        "weeknights": false,
+        "weekends": false
      },
      purpose: {
-      "3x3 Casual": false,
-      "5x5 Casual": false,
-      "5x5 Ranked": false
+        "3x3 Casual": false,
+        "5x5 Casual": false,
+        "5x5 Ranked": false
      },
      lanes: {
-      "top": false,
-      "mid": false,
-      "bot": false,
-      "jungle": false
+        "top": false,
+        "mid": false,
+        "bot": false,
+        "jungle": false
       },
       roles: {
         "assassin": false,

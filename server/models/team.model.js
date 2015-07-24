@@ -31,18 +31,18 @@ var Team = db.define( 'team', {
       },
       about: "",
       lanes: {
-        top: false,
-        mid: false,
-        bot: false,
-        jungle: false
+        "top": false,
+        "mid": false,
+        "bot": false,
+        "jungle": false
       },
       roles: {
-        assassin: false,
-        mage: false,
-        marksman: false,
-        bruiser: false,
-        support: false,
-        tank: false
+        "assassin": false,
+        "mage": false,
+        "marksman": false,
+        "bruiser": false,
+        "support": false,
+        "tank": false
       }     
     }
   },

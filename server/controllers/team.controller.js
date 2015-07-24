@@ -14,6 +14,7 @@ module.exports = {
       Team.create({
         teamName: req.body.teamName,
         teamBio: {times: req.body.times, about: req.body.about},
+        teamCaptain: user.id,  // redundant, but this gets checked a lot and saves having to iterate over keys every time
         members: {id: user.id, name: user.displayName, isAdmin: true}
       })
       .then(function(teamData){
