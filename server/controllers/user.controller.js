@@ -169,7 +169,7 @@ module.exports = {
       var temp = data.temp;
       temp.updatedAt = 0;
       relay(obj.verifyRoute, function(err, body){
-        if(JSON.parse(body)[obj.id].pages[0].name === obj.verifyKey || config.environment === 'development'){
+        if(JSON.parse(body)[obj.id].pages[0].name === obj.verifyKey || config.autoauth){ //TODO: Remove autoauth
           obj.verified = true;
           obj.verifyKey = false;
           obj.verifyRoute = false;
@@ -252,7 +252,7 @@ function relay(url, callback) {
       callback(err, null);
     } else if(stat.statusCode < 200 || stat.statusCode >= 400) {
       console.log("Status Code: " + stat.statusCode + " at: " + url);
-      if(stat.statusCode === 404 || stat.statusCode >= 500){
+      if(stat.statusCode === 404 || stat.statusCode >= 500){ 
         callback(null, false);
       } //handles requests for info that doesn't exist if that happens
     } else {

@@ -38,10 +38,9 @@ var User = db.define( 'user', {
         "weekends": false
       },
       purpose: {
-        "Casual": false,
-        "Ranked": false,
-        "3v3": false,
-        "5v5": false
+        "3x3 Casual": false,
+        "5x5 Casual": false,
+        "5x5 Ranked": false
       },
       lanes: {
         "top": false,
@@ -57,7 +56,8 @@ var User = db.define( 'user', {
         "support": false,
         "tank": false
       },
-     about: ""
+     about: "I haven't filled this out yet.",
+     favorite: "I haven't filled this out yet."
     }
   },
   teams: {

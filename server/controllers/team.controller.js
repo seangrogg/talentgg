@@ -53,7 +53,7 @@ module.exports = {
               });
           });
       },
-
+      
 
 
   getProfile: function( req, res, next ){
@@ -65,7 +65,7 @@ module.exports = {
       }
     }})
        .then(function(teamProfile) {
-       console.log(teamProfile);
+       console.log(teamProfile);       
         deepBoolean(teamProfile.profile);
         deepBoolean(teamProfile.ads);
         res.json(teamProfile);
@@ -81,7 +81,7 @@ module.exports = {
       }
     }})
        .then(function(teamProfile) {
-       console.log(teamProfile);
+       console.log(teamProfile);       
         deepBoolean(teamProfile.profile);
         deepBoolean(teamProfile.ads);
         res.json(teamProfile);
@@ -135,7 +135,7 @@ module.exports = {
     .then(function(userData){
       Team.findById(req.body.teamid).then(function(teamData){
         team.members.push({id: user.id, name: user.displayName, isAdmin: true});
-      });
+      });      
     });
   }
 };

@@ -35,13 +35,10 @@
     "react-async": "^2.1.0",
     "react-btn-checkbox": "^0.0.2",
     "react-d3": "^0.3.1",
-    "react-g-analytics": "^0.1.0",
-    "react-ga": "^1.0.12",
     "react-router": "^0.13.3",
     "reactify": "^1.1.1",
     "request": "^2.58.0",
     "sequelize": "^3.3.2",
-    "serve-favicon": "^2.3.0",
     "superagent": "^1.2.0",
     "util": "^0.10.3",
     "vinyl-source-stream": "^1.1.0"

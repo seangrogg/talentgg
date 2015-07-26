@@ -49,7 +49,6 @@ var Header = React.createClass({
                 <ul className="dropdown-menu">
                   <li><Link to="accountLink">Account Link</Link></li>
                   <li><Link to="settings">Settings</Link></li>
-                  <li><Link to="about">About</Link></li>
                   <li role="separator" className="divider"></li>
                   <li><Link to="/" onClick={this.logout}>Logout</Link></li>
                 </ul>

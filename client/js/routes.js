@@ -12,15 +12,19 @@ var NotFoundRoute = Router.NotFoundRoute;
 /* COMPONENTS TO RENDER DEPENDING ON THE REQUESTED ROUTE */
 
 var App = require("./components/app");
-var Profile = require("./components/profile/profile"); //User's profile
-var UserProfile = require("./components/user/viewProfile"); //Viewing other users
-var TeamRegistration = require("./components/team/team-registration"); //Making a team
-var TeamProfile = require("./components/team/team-profile"); //Viewing a team
+var UserProfile = require("./components/user-profile/viewProfile");
+var Profile = require("./components/user-profile/profile");
+var UserQuestions = require("./components/user-profile/user-questions");
+var BioForm = require("./components/user-profile/bio-form");
+var FindPlayers = require("./components/recruitment/findPlayers");
+var AccountLink = require("./components/user-profile/accountLink");
+var TeamRegistration = require("./components/team/team-registration");
+var TeamProfile = require("./components/team/team-profile");
 var TeamUpdateForm = require("./components/team/team-update-form");
-var FindPlayers = require("./components/recruitment/findPlayers"); //Finding players/teams
-var AccountLink = require("./components/settings/accountLink"); //Connecting account
-var Settings = require("./components/settings/settings"); //Changing email/password
-var About = require("./components/settings/about"); //About page
+var Settings = require("./components/user-profile/settings");
+
+var Test = require("./components/user-profile/test");
+
 var NotFound = React.createClass({
   render: function () {
     return <h2>NOT FOUND</h2>;
@@ -30,16 +34,18 @@ var NotFound = React.createClass({
 module.exports = (
 
   <Route name="app" path="/" handler={App}>
-    <DefaultRoute handler={Profile} />
-    <Route name="profile" path="/profile" handler={Profile}/>
+    <DefaultRoute handler={Test} />
+    <Route name="profile" path="/profile" handler={Test}/>
     <Route name="user-profile" path="/user/:username" handler={UserProfile}/>
+    <Route name="userquestions" path="/userquestions" source="/questions" handler={UserQuestions}/>
+    <Route name="findplayers" path="/findplayers" handler={FindPlayers}/>
+    <Route name="bioform" path="/bioform" handler={BioForm}/>
+    <Route name="accountLink" path="/account-link" handler={AccountLink}/>
     <Route name="teamregistration" path="/teamregistration" handler={TeamRegistration}/>
     <Route name="teamprofile" path="/team/:teamname" handler={TeamProfile}/>
     <Route name="teamupdateform" path="/teamupdate" handler={TeamUpdateForm}/>
-    <Route name="findplayers" path="/findplayers" handler={FindPlayers}/>
-    <Route name="accountLink" path="/account-link" handler={AccountLink}/>
     <Route name="settings" path="/settings" handler={Settings}/>
-    <Route name="about" path="/about" handler={About}/>
+    <Route name="test" path="/test" handler={Test}/>
     <NotFoundRoute handler={NotFound}/>
   </Route>
 

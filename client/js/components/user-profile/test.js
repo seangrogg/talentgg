@@ -36,7 +36,7 @@ var Test = React.createClass({
     var arrayToString = function(obj) {
       var arr = [];
       for (var key in obj) {
-        if (obj[key]) {
+        if (obj[key] === true) {
           arr.push(key);
         }
       }
@@ -59,7 +59,7 @@ var Test = React.createClass({
           </div>
           <div className="col-sm-4">
             <h3>{this.props.displayName}</h3>
-            <p>{this.props.bio.about === "" ? 'I haven\'t filled this out yet' : this.props.bio.about}</p>
+            <p>{this.props.bio.about}</p>
           </div>
           <div className="col-sm-2">
             <img className="center-block" width="128" height="128" src={"/img/tier-" + this.props.temp.rank + ".png"} />
@@ -110,7 +110,7 @@ var Test = React.createClass({
             </div>
           </div>
           <div role="tabpanel" className="tab-pane" id="edit">
-            <Edit initialBio={this.props.bio} />
+            <Edit />
           </div>
           <div role="tabpanel" className="tab-pane" id="questions">
             <Questions />

@@ -1,15 +1,14 @@
 var express = require('express');
 var app = express();
 var config = require('./config/config');
-var favicon = require('serve-favicon');
 require('./config/auth')(app);
 
 // Serving static files from dist folder
 
 app.use(express.static(__dirname + '/../dist', {index: false}));
-app.use(favicon(__dirname + '/../dist/img/favicon.ico'));
 
 // Default Routes
+
 // Determines which main page to render based on session status
 app.get('/', function(req, res) {
   if(req.session.passport.user){

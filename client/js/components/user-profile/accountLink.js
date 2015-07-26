@@ -34,7 +34,9 @@ var AccountLink = React.createClass({
   render: function(){
     return(
       <div>
-        <h2>Account Status: {this.state.verified ? <span style={{color: 'green'}}>Connected</span> : <span style={{color: 'red'}}>Not Connected</span>}</h2>
+        <div className={this.state.verified ? "" : "invisible"}>
+        <h2>Congratulations, {this.state.displayName}, your account is connected!</h2>
+        </div>
         <h3>Look up your profile</h3>
         <br/>
         <form className="form-horizontal" method="POST" action="/setSummoner">
